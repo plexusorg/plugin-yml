@@ -55,7 +55,9 @@ publishing {
 
     repositories {
         maven {
-            url = uri("https://nexus.telesphoreo.me/repository/gradle-plugins-snapshots")
+            val releasesRepoUrl = uri("https://nexus.telesphoreo.me/repository/gradle-plugins-releases/")
+            val snapshotsRepoUrl = uri("https://nexus.telesphoreo.me/repository/gradle-plugins-snapshots/")
+            url = if (version.toString().endsWith("-SNAPSHOT")) snapshotsRepoUrl else releasesRepoUrl
             credentials {
                 username = System.getenv("plexUser")
                 password = System.getenv("plexPassword")
