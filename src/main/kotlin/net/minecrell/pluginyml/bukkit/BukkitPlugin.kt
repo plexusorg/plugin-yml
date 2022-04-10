@@ -43,8 +43,8 @@ class BukkitPlugin : PlatformPlugin<BukkitPluginDescription>("Bukkit", "plugin.y
         description.description = description.description ?: project.description
         description.website = description.website ?: project.findProperty("url")?.toString()
         description.author = description.author ?: project.findProperty("author")?.toString()
-        description.libraries = description.libraries ?: libraries!!.resolvedConfiguration.firstLevelModuleDependencies
-            .map { it.module.id.toString() }
+        description.libraries = description.libraries ?: libraries!!.allDependencies
+            .map { it.group + ":" + it.name + ":" + it.version }
     }
 
     override fun validate(description: BukkitPluginDescription) {

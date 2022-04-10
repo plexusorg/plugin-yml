@@ -52,8 +52,17 @@ publishing {
             from(components["java"])
         }
     }
-}
 
+    repositories {
+        maven {
+            url = uri("https://nexus.telesphoreo.me/repository/gradle-plugins-snapshots")
+            credentials {
+                username = System.getenv("plexUser")
+                password = System.getenv("plexPassword")
+            }
+        }
+    }
+}
 pluginBundle {
     website = url
     vcsUrl = url
